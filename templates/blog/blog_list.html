@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lcomedy-Blog</title>
+    <style>
+        .header{
+            color: #ff0000;
+        }
+        .blog{
+            padding:20px 0px;
+        }
+        .blog .info span {
+            padding-right: 10px;
+        }
+        .blog .summary {
+            padding-top: 20px;
+        }
+        .footer{
+            color: #666111;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Lomedy Blogs</h1>
+</div>
+<div class="content">
+    {% for blog in blogs %}
+    <div class="blog">
+        <div class="modal-title">
+            <a href="{% url 'blog_get_detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+        </div>
+        <div class="panel-info">
+            <span class="catagory">{{ blog.catagory.name }}</span>
+            <span class="author">{{ blog.author }}</span>
+            <span class="created">{{ blog.created | date:"Y-m-d H:i" }}</span>
+        </div>
+        <div class="summary">
+            {{ blog.content | truncatechars:100 }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="footer">
+
+</div>
+</body>
+</html>
